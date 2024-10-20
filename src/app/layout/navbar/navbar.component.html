@@ -1,9 +1,15 @@
 <nav class="navbar bg-body-tertiary border-bottom">
-    <div class="container">
-        <a class="navbar-brand">Navbar</a>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+  <div class="container-fluid px-4">
+    <a class="navbar-brand text-primary" routerLink="/">Store</a>
+    <div class="d-flex align-items-center" role="search">
+      <a class="btn btn-outline-success" routerLink="products">Products</a>
+      <button type="button" class="btn btn-primary position-relative mx-3">
+        <i class="icon fas fa-shopping-cart"></i>
+        <span *ngIf="item"
+          class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+          <span class="visually-hidden">{{item}}</span>
+        </span>
+      </button>
     </div>
+  </div>
 </nav>
