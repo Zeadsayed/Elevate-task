@@ -1,0 +1,83 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.5)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
+<div class="container-fluid py-3 px-3">
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+            <div class="shop-shorter bg-body-tertiary mb-5">
+                <h3 class="my-2 text-primary"><i class="fa fa-shopping-basket" aria-hidden="true"></i> All Products</h3>
+                <div class="sort-text">
+                    <span>Showing 1 - {{limit}} of {{products.length}} Result</span>
+                </div>
+                <!-- <div class="products-dropdown">
+                    <select>
+                        <option value="default">Default Sorting</option>
+                        <option value="new" selected>Short by Latest</option>
+                        <option value="old">Oldest Product</option>
+                        <option value="hight-to-low">High To Low</option>
+                        <option value="low-to-high">Low To High</option>
+                    </select>
+                </div> -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Default Sorting
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Short by Latest</a></li>
+                        <li><a class="dropdown-item" href="#">Oldest Product</a></li>
+                        <li><a class="dropdown-item" href="#">High To Low</a></li>
+                        <li><a class="dropdown-item" href="#">Low To High</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 d-flex" *ngFor="let item of displayedProducts">
+            <div class="card mb-4 shadow-sm" style="width: 18rem;">
+                <img [src]="item.image" class="card-img-top" width="50%" [alt]="item.title">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text text-muted">{{ item.description | slice:0:50 }}...</p>
+                    <h6 class="card-subtitle mb-2 text-success">$ {{ item.price }}</h6>
+                    <p class="card-text">
+                        <i class="fas fa-star text-warning" *ngFor="let star of getStars(item.rating.rate)"></i>
+                        <small class="text-muted mx-2">({{ item.rating.count }} reviews)</small>
+                    </p>
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 
+        <ul class="pagination flex-wrap mt-40 justify-content-center">
+            <li class="page-item disabled">
+                <span class="page-link"><i class="fas fa-chevron-left"></i></span>
+            </li>
+            <li class="page-item active">
+                <span class="page-link">
+                    01
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">02</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+            </li>
+        </ul> -->
+
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" [class.disabled]="currentPage === 1">
+                    <button class="page-link" (click)="prevPage()"><i class="fas fa-chevron-left"></i></button>
+                </li>
+                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                    <button class="page-link" (click)="nextPage()"><i class="fas fa-chevron-right"></i></button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
